@@ -42,6 +42,8 @@ export default function Category() {
     }
   }
 
+  console.log('user: ',user);
+
   return (
     <Container>
       <CategoryForm
@@ -61,7 +63,8 @@ export default function Category() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {user.categories.map((row) => (
+            
+            { user && user.categories.map((row) => (
               <TableRow
                 key={row._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

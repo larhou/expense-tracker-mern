@@ -28,7 +28,25 @@ export const register = async (req, res) => {
     firstName,
     lastName,
     categories,
+});
+
+    // In MongoDB, when you add a new object to an array in a document, MongoDB automatically assigns a unique _id to that object. 
+    // This _id is of type mongoose.Types.ObjectId.
+    // When you create a new User instance with the categories array, each object in the categories array will be assigned a unique _id by MongoDB. 
+    // This _id is of type mongoose.Types.ObjectId.
+    // Example: 
+    /* const user = await User({
+    email: 'user@example.com',
+    password: hashedPassword,
+    firstName: 'John',
+    lastName: 'Doe',
+    categories: [
+        { label: 'Rent', icon: 'house' },
+        { label: 'Groceries', icon: 'shopping-cart' }
+    ]
   });
+  */
+
   const savedUser = await user.save();
   console.log(savedUser);
 

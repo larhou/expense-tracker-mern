@@ -97,7 +97,7 @@ export default function CategoryForm({ editCategory, setEditCategory }) {
 
   function getCategoryNameById() {
     return (
-      user.categories.find((category) => category._id === form.category_id) ??
+      (user && user.categories && user.categories.find((category) => category._id === form.category_id)) ??
       ""
     );
   }

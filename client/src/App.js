@@ -8,9 +8,10 @@ import { setUser } from "./store/auth.js";
 function App() {
   const token = Cookies.get("token");
   const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState(null);
   const dispatch = useDispatch();
 
-  async function fetchUser() {   
+  async function fetchUser() {
     setIsLoading(true);
     const res = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
       headers: {
@@ -25,8 +26,22 @@ function App() {
     setIsLoading(false);
   }
 
+  async function fetchCategories() { 
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/categories`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (res.ok) {
+      const categories = await res.json();
+      setCategories(categories);
+    }
+  }
+
   useEffect(() => {
     fetchUser();
+    fetchCategories();
   }, []);
 
   if (isLoading) {
